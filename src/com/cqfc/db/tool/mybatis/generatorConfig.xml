@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  
+  <!-- <classPathEntry location="mysql-connector-java-5.1.27-bin.jar"/> -->
+  
+  <context id="context1" targetRuntime="MyBatis3">
+  	
+  	<!-- 不自动生成注释 -->
+  	<commentGenerator>
+  		<property name="suppressAllComments" value="true"/>
+  	</commentGenerator>
+  	
+	<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://123.207.23.58:18001/forumdb?useUnicode=true&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true"
+		userId="memeAdmin" password="meUser13579" />
+	<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		connectionURL="jdbc:mysql://127.0.0.1:3306/userdb?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;autoReconnect=true"
+		userId="root" password="root" /> -->
+    
+    <!-- 类型转换器,这里使用能转换成基本类型的转换器 -->
+    <!-- <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverCqfcImpl">
+    	<property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver> -->
+    
+    <!-- 实体类生成器配置
+    	targetProject可使用绝对路径或相对路径
+    	使用命令行时可使用..\src
+     -->
+    <javaModelGenerator targetPackage="com.meme.other.bo" targetProject="..\ModelGen\src" >
+    	<property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    
+    <!-- *Mapper.xml生成器.若不需要,则将targetproject设为空值即可 -->
+    <sqlMapGenerator targetPackage="com.meme.other.mapper" targetProject="..\ModelGen\src" />
+    
+    <!-- *Mapper.java接口生成器.若不需要,则将targetproject设为空值即可 -->
+    <javaClientGenerator targetPackage="com.meme.other.dao.mapper" targetProject="..\ModelGen\src" type="XMLMAPPER" />
+
+
+	<table schema="" tableName="accusation" domainObjectName="Accusation"
+		enableCountByExample="false" enableDeleteByExample="false"
+		enableSelectByExample="false" enableUpdateByExample="false">
+		<property name="useActualColumnNames" value="false" />
+		<columnRenamingRule searchString="^F"
+			replaceString="" />
+	</table>
+	  <table schema="" tableName="application" domainObjectName="Application"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="auth" domainObjectName="Auth"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="coin" domainObjectName="Coin"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="collection" domainObjectName="Collection"
+						   enableCountByExample="false" enableDeleteByExample="false"
+						   enableSelectByExample="false" enableUpdateByExample="false">
+	  <property name="useActualColumnNames" value="false" />
+	  <columnRenamingRule searchString="^F"
+						  replaceString="" />
+  </table>
+	  <table schema="" tableName="comment" domainObjectName="Comment"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="concern" domainObjectName="Concern"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="essay" domainObjectName="Essay"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="gold" domainObjectName="Gold"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="material" domainObjectName="Material"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="message" domainObjectName="Message"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="recommend" domainObjectName="Recommend"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="region" domainObjectName="Region"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="topic" domainObjectName="Topic"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+	  <table schema="" tableName="user" domainObjectName="User"
+			 enableCountByExample="false" enableDeleteByExample="false"
+			 enableSelectByExample="false" enableUpdateByExample="false">
+		  <property name="useActualColumnNames" value="false" />
+		  <columnRenamingRule searchString="^F"
+							  replaceString="" />
+	  </table>
+
+	<!-- <table schema="" tableName="t_user_report_attach" domainObjectName="UserReportAttach"
+		enableCountByExample="false" enableDeleteByExample="false"
+		enableSelectByExample="false" enableUpdateByExample="false">
+		<property name="useActualColumnNames" value="false" />
+		<columnRenamingRule searchString="^F"
+			replaceString="" />
+	</table> -->
+
+    <!-- 需要生成的table配置
+    	domainObjectName为要生成的实体类的名称
+    	enable*ByExample控制是否生成动态sql辅助类 -->
+<!--     <table schema="" tableName="tb_user" domainObjectName="TestUser" 
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+    </table> -->
+    
+    <!-- <table schema="" tableName="t_chat_msg" domainObjectName="ChatMsg"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_complain_attach" domainObjectName="ComplainAttach"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_complain_progress" domainObjectName="ComplainProgress"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_meet_complain" domainObjectName="MeetComplain"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_meet_order" domainObjectName="MeetOrder"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_present_order" domainObjectName="PresentOrder"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_present_type" domainObjectName="PresentType"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="t_video_order" domainObjectName="VideoOrder"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table>
+    <table schema="" tableName="unread_chat_msg" domainObjectName="UnreadChatMsg"
+    	enableCountByExample="false" enableDeleteByExample="false"
+    	enableSelectByExample="false" enableUpdateByExample="false">
+   		<property name="useActualColumnNames" value="false"/>
+   		<columnRenamingRule searchString="^F" replaceString=""/>
+   	</table> -->
+    
+  </context>
+</generatorConfiguration>

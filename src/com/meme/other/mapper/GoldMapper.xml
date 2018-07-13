@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.GoldMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Gold" >
+    <id column="gold_record_id" property="goldRecordId" jdbcType="INTEGER" />
+    <result column="gold_record_time" property="goldRecordTime" jdbcType="TIMESTAMP" />
+    <result column="gold_num" property="goldNum" jdbcType="INTEGER" />
+    <result column="gold_user_id" property="goldUserId" jdbcType="INTEGER" />
+    <result column="gold_reason" property="goldReason" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="water_type" property="waterType" jdbcType="INTEGER" />
+    <result column="ret_id" property="retId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gold_record_id, gold_record_time, gold_num, gold_user_id, gold_reason, create_time, 
+    lastUpdateTime, water_type, ret_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold
+    where gold_record_id = #{goldRecordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold
+    where gold_record_id = #{goldRecordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Gold" >
+    insert into gold (gold_record_id, gold_record_time, gold_num, 
+      gold_user_id, gold_reason, create_time, 
+      lastUpdateTime, water_type, ret_id
+      )
+    values (#{goldRecordId,jdbcType=INTEGER}, #{goldRecordTime,jdbcType=TIMESTAMP}, #{goldNum,jdbcType=INTEGER}, 
+      #{goldUserId,jdbcType=INTEGER}, #{goldReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastupdatetime,jdbcType=TIMESTAMP}, #{waterType,jdbcType=INTEGER}, #{retId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Gold" >
+    insert into gold
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goldRecordId != null" >
+        gold_record_id,
+      </if>
+      <if test="goldRecordTime != null" >
+        gold_record_time,
+      </if>
+      <if test="goldNum != null" >
+        gold_num,
+      </if>
+      <if test="goldUserId != null" >
+        gold_user_id,
+      </if>
+      <if test="goldReason != null" >
+        gold_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+      <if test="waterType != null" >
+        water_type,
+      </if>
+      <if test="retId != null" >
+        ret_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goldRecordId != null" >
+        #{goldRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="goldRecordTime != null" >
+        #{goldRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goldNum != null" >
+        #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="goldUserId != null" >
+        #{goldUserId,jdbcType=INTEGER},
+      </if>
+      <if test="goldReason != null" >
+        #{goldReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="waterType != null" >
+        #{waterType,jdbcType=INTEGER},
+      </if>
+      <if test="retId != null" >
+        #{retId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Gold" >
+    update gold
+    <set >
+      <if test="goldRecordTime != null" >
+        gold_record_time = #{goldRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goldNum != null" >
+        gold_num = #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="goldUserId != null" >
+        gold_user_id = #{goldUserId,jdbcType=INTEGER},
+      </if>
+      <if test="goldReason != null" >
+        gold_reason = #{goldReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="waterType != null" >
+        water_type = #{waterType,jdbcType=INTEGER},
+      </if>
+      <if test="retId != null" >
+        ret_id = #{retId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where gold_record_id = #{goldRecordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Gold" >
+    update gold
+    set gold_record_time = #{goldRecordTime,jdbcType=TIMESTAMP},
+      gold_num = #{goldNum,jdbcType=INTEGER},
+      gold_user_id = #{goldUserId,jdbcType=INTEGER},
+      gold_reason = #{goldReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      water_type = #{waterType,jdbcType=INTEGER},
+      ret_id = #{retId,jdbcType=BIGINT}
+    where gold_record_id = #{goldRecordId,jdbcType=INTEGER}
+  </update>
+</mapper>

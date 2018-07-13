@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Message" >
+    <id column="message_id" property="messageId" jdbcType="BIGINT" />
+    <result column="message_user_id" property="messageUserId" jdbcType="BIGINT" />
+    <result column="message_content" property="messageContent" jdbcType="VARCHAR" />
+    <result column="is_read" property="isRead" jdbcType="BIT" />
+    <result column="message_essay_id" property="messageEssayId" jdbcType="BIGINT" />
+    <result column="message_type" property="messageType" jdbcType="INTEGER" />
+    <result column="sender_user_id" property="senderUserId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    message_id, message_user_id, message_content, is_read, message_essay_id, message_type, 
+    sender_user_id, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Message" >
+    insert into message (message_id, message_user_id, message_content, 
+      is_read, message_essay_id, message_type, 
+      sender_user_id, create_time, lastUpdateTime
+      )
+    values (#{messageId,jdbcType=BIGINT}, #{messageUserId,jdbcType=BIGINT}, #{messageContent,jdbcType=VARCHAR}, 
+      #{isRead,jdbcType=BIT}, #{messageEssayId,jdbcType=BIGINT}, #{messageType,jdbcType=INTEGER}, 
+      #{senderUserId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        message_id,
+      </if>
+      <if test="messageUserId != null" >
+        message_user_id,
+      </if>
+      <if test="messageContent != null" >
+        message_content,
+      </if>
+      <if test="isRead != null" >
+        is_read,
+      </if>
+      <if test="messageEssayId != null" >
+        message_essay_id,
+      </if>
+      <if test="messageType != null" >
+        message_type,
+      </if>
+      <if test="senderUserId != null" >
+        sender_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="messageUserId != null" >
+        #{messageUserId,jdbcType=BIGINT},
+      </if>
+      <if test="messageContent != null" >
+        #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        #{isRead,jdbcType=BIT},
+      </if>
+      <if test="messageEssayId != null" >
+        #{messageEssayId,jdbcType=BIGINT},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="senderUserId != null" >
+        #{senderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Message" >
+    update message
+    <set >
+      <if test="messageUserId != null" >
+        message_user_id = #{messageUserId,jdbcType=BIGINT},
+      </if>
+      <if test="messageContent != null" >
+        message_content = #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="isRead != null" >
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+      <if test="messageEssayId != null" >
+        message_essay_id = #{messageEssayId,jdbcType=BIGINT},
+      </if>
+      <if test="messageType != null" >
+        message_type = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="senderUserId != null" >
+        sender_user_id = #{senderUserId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Message" >
+    update message
+    set message_user_id = #{messageUserId,jdbcType=BIGINT},
+      message_content = #{messageContent,jdbcType=VARCHAR},
+      is_read = #{isRead,jdbcType=BIT},
+      message_essay_id = #{messageEssayId,jdbcType=BIGINT},
+      message_type = #{messageType,jdbcType=INTEGER},
+      sender_user_id = #{senderUserId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </update>
+</mapper>

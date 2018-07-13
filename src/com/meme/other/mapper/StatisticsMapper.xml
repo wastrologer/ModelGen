@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meme.other.dao.mapper.StatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Statistics">
+    <id column="statistic_id" jdbcType="BIGINT" property="statisticId" />
+    <result column="log_user_count" jdbcType="INTEGER" property="logUserCount" />
+    <result column="add_user_count" jdbcType="INTEGER" property="addUserCount" />
+    <result column="add_identify_user_count" jdbcType="INTEGER" property="addIdentifyUserCount" />
+    <result column="total_user_count" jdbcType="INTEGER" property="totalUserCount" />
+    <result column="news_count" jdbcType="INTEGER" property="newsCount" />
+    <result column="statistics_date" jdbcType="VARCHAR" property="statisticsDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    statistic_id, log_user_count, add_user_count, add_identify_user_count, total_user_count, 
+    news_count, statistics_date, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_statistics_total
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_statistics_total
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total (statistic_id, log_user_count, add_user_count, 
+      add_identify_user_count, total_user_count, news_count, 
+      statistics_date, create_time, lastUpdateTime
+      )
+    values (#{statisticId,jdbcType=BIGINT}, #{logUserCount,jdbcType=INTEGER}, #{addUserCount,jdbcType=INTEGER}, 
+      #{addIdentifyUserCount,jdbcType=INTEGER}, #{totalUserCount,jdbcType=INTEGER}, #{newsCount,jdbcType=INTEGER}, 
+      #{statisticsDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        statistic_id,
+      </if>
+      <if test="logUserCount != null">
+        log_user_count,
+      </if>
+      <if test="addUserCount != null">
+        add_user_count,
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count,
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count,
+      </if>
+      <if test="newsCount != null">
+        news_count,
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        #{statisticId,jdbcType=BIGINT},
+      </if>
+      <if test="logUserCount != null">
+        #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Statistics">
+    update t_statistics_total
+    <set>
+      <if test="logUserCount != null">
+        log_user_count = #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        add_user_count = #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count = #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count = #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        news_count = #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date = #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Statistics">
+    update t_statistics_total
+    set log_user_count = #{logUserCount,jdbcType=INTEGER},
+      add_user_count = #{addUserCount,jdbcType=INTEGER},
+      add_identify_user_count = #{addIdentifyUserCount,jdbcType=INTEGER},
+      total_user_count = #{totalUserCount,jdbcType=INTEGER},
+      news_count = #{newsCount,jdbcType=INTEGER},
+      statistics_date = #{statisticsDate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Statistics">
+    <id column="statistic_id" jdbcType="BIGINT" property="statisticId" />
+    <result column="log_user_count" jdbcType="INTEGER" property="logUserCount" />
+    <result column="add_user_count" jdbcType="INTEGER" property="addUserCount" />
+    <result column="add_identify_user_count" jdbcType="INTEGER" property="addIdentifyUserCount" />
+    <result column="total_user_count" jdbcType="INTEGER" property="totalUserCount" />
+    <result column="news_count" jdbcType="INTEGER" property="newsCount" />
+    <result column="statistics_date" jdbcType="VARCHAR" property="statisticsDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    statistic_id, log_user_count, add_user_count, add_identify_user_count, total_user_count, 
+    news_count, statistics_date, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_statistics_total
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_statistics_total
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total (statistic_id, log_user_count, add_user_count, 
+      add_identify_user_count, total_user_count, news_count, 
+      statistics_date, create_time, lastUpdateTime
+      )
+    values (#{statisticId,jdbcType=BIGINT}, #{logUserCount,jdbcType=INTEGER}, #{addUserCount,jdbcType=INTEGER}, 
+      #{addIdentifyUserCount,jdbcType=INTEGER}, #{totalUserCount,jdbcType=INTEGER}, #{newsCount,jdbcType=INTEGER}, 
+      #{statisticsDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        statistic_id,
+      </if>
+      <if test="logUserCount != null">
+        log_user_count,
+      </if>
+      <if test="addUserCount != null">
+        add_user_count,
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count,
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count,
+      </if>
+      <if test="newsCount != null">
+        news_count,
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        #{statisticId,jdbcType=BIGINT},
+      </if>
+      <if test="logUserCount != null">
+        #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Statistics">
+    update t_statistics_total
+    <set>
+      <if test="logUserCount != null">
+        log_user_count = #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        add_user_count = #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count = #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count = #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        news_count = #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date = #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Statistics">
+    update t_statistics_total
+    set log_user_count = #{logUserCount,jdbcType=INTEGER},
+      add_user_count = #{addUserCount,jdbcType=INTEGER},
+      add_identify_user_count = #{addIdentifyUserCount,jdbcType=INTEGER},
+      total_user_count = #{totalUserCount,jdbcType=INTEGER},
+      news_count = #{newsCount,jdbcType=INTEGER},
+      statistics_date = #{statisticsDate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where statistic_id = #{statisticId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Statistics">
+    <result column="statistic_id" jdbcType="BIGINT" property="statisticId" />
+    <result column="log_user_count" jdbcType="INTEGER" property="logUserCount" />
+    <result column="add_user_count" jdbcType="INTEGER" property="addUserCount" />
+    <result column="add_identify_user_count" jdbcType="INTEGER" property="addIdentifyUserCount" />
+    <result column="total_user_count" jdbcType="INTEGER" property="totalUserCount" />
+    <result column="news_count" jdbcType="INTEGER" property="newsCount" />
+    <result column="statistics_date" jdbcType="VARCHAR" property="statisticsDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total (statistic_id, log_user_count, add_user_count, 
+      add_identify_user_count, total_user_count, news_count, 
+      statistics_date, create_time, lastUpdateTime
+      )
+    values (#{statisticId,jdbcType=BIGINT}, #{logUserCount,jdbcType=INTEGER}, #{addUserCount,jdbcType=INTEGER}, 
+      #{addIdentifyUserCount,jdbcType=INTEGER}, #{totalUserCount,jdbcType=INTEGER}, #{newsCount,jdbcType=INTEGER}, 
+      #{statisticsDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        statistic_id,
+      </if>
+      <if test="logUserCount != null">
+        log_user_count,
+      </if>
+      <if test="addUserCount != null">
+        add_user_count,
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count,
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count,
+      </if>
+      <if test="newsCount != null">
+        news_count,
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        #{statisticId,jdbcType=BIGINT},
+      </if>
+      <if test="logUserCount != null">
+        #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Statistics">
+    <result column="statistic_id" jdbcType="BIGINT" property="statisticId" />
+    <result column="log_user_count" jdbcType="INTEGER" property="logUserCount" />
+    <result column="add_user_count" jdbcType="INTEGER" property="addUserCount" />
+    <result column="add_identify_user_count" jdbcType="INTEGER" property="addIdentifyUserCount" />
+    <result column="total_user_count" jdbcType="INTEGER" property="totalUserCount" />
+    <result column="news_count" jdbcType="INTEGER" property="newsCount" />
+    <result column="statistics_date" jdbcType="VARCHAR" property="statisticsDate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="lastUpdateTime" jdbcType="TIMESTAMP" property="lastupdatetime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total (statistic_id, log_user_count, add_user_count, 
+      add_identify_user_count, total_user_count, news_count, 
+      statistics_date, create_time, lastUpdateTime
+      )
+    values (#{statisticId,jdbcType=BIGINT}, #{logUserCount,jdbcType=INTEGER}, #{addUserCount,jdbcType=INTEGER}, 
+      #{addIdentifyUserCount,jdbcType=INTEGER}, #{totalUserCount,jdbcType=INTEGER}, #{newsCount,jdbcType=INTEGER}, 
+      #{statisticsDate,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Statistics">
+    insert into t_statistics_total
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        statistic_id,
+      </if>
+      <if test="logUserCount != null">
+        log_user_count,
+      </if>
+      <if test="addUserCount != null">
+        add_user_count,
+      </if>
+      <if test="addIdentifyUserCount != null">
+        add_identify_user_count,
+      </if>
+      <if test="totalUserCount != null">
+        total_user_count,
+      </if>
+      <if test="newsCount != null">
+        news_count,
+      </if>
+      <if test="statisticsDate != null">
+        statistics_date,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastupdatetime != null">
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="statisticId != null">
+        #{statisticId,jdbcType=BIGINT},
+      </if>
+      <if test="logUserCount != null">
+        #{logUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addUserCount != null">
+        #{addUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="addIdentifyUserCount != null">
+        #{addIdentifyUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalUserCount != null">
+        #{totalUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="newsCount != null">
+        #{newsCount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsDate != null">
+        #{statisticsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null">
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

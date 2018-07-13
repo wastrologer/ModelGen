@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.ConcernMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Concern" >
+    <id column="concern_id" property="concernId" jdbcType="BIGINT" />
+    <result column="user_from_id" property="userFromId" jdbcType="BIGINT" />
+    <result column="user_to_id" property="userToId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    concern_id, user_from_id, user_to_id, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from concern
+    where concern_id = #{concernId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from concern
+    where concern_id = #{concernId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Concern" >
+    insert into concern (concern_id, user_from_id, user_to_id, 
+      create_time, lastUpdateTime)
+    values (#{concernId,jdbcType=BIGINT}, #{userFromId,jdbcType=BIGINT}, #{userToId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Concern" >
+    insert into concern
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="concernId != null" >
+        concern_id,
+      </if>
+      <if test="userFromId != null" >
+        user_from_id,
+      </if>
+      <if test="userToId != null" >
+        user_to_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="concernId != null" >
+        #{concernId,jdbcType=BIGINT},
+      </if>
+      <if test="userFromId != null" >
+        #{userFromId,jdbcType=BIGINT},
+      </if>
+      <if test="userToId != null" >
+        #{userToId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Concern" >
+    update concern
+    <set >
+      <if test="userFromId != null" >
+        user_from_id = #{userFromId,jdbcType=BIGINT},
+      </if>
+      <if test="userToId != null" >
+        user_to_id = #{userToId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where concern_id = #{concernId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Concern" >
+    update concern
+    set user_from_id = #{userFromId,jdbcType=BIGINT},
+      user_to_id = #{userToId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where concern_id = #{concernId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Region" >
+    <id column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="region_name" property="regionName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    region_id, province_name, city_name, region_name, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from region
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Region" >
+    insert into region (region_id, province_name, city_name, 
+      region_name, create_time, lastUpdateTime
+      )
+    values (#{regionId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{regionName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Region" >
+    insert into region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="regionName != null" >
+        region_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Region" >
+    update region
+    <set >
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="regionName != null" >
+        region_name = #{regionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Region" >
+    update region
+    set province_name = #{provinceName,jdbcType=VARCHAR},
+      city_name = #{cityName,jdbcType=VARCHAR},
+      region_name = #{regionName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where region_id = #{regionId,jdbcType=INTEGER}
+  </update>
+</mapper>

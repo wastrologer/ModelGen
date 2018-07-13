@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.RecommendMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Recommend" >
+    <id column="recommend_id" property="recommendId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="essay_id" property="essayId" jdbcType="BIGINT" />
+    <result column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    recommend_id, user_id, essay_id, comment_id, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from recommend
+    where recommend_id = #{recommendId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from recommend
+    where recommend_id = #{recommendId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Recommend" >
+    insert into recommend (recommend_id, user_id, essay_id, 
+      comment_id, create_time, lastUpdateTime
+      )
+    values (#{recommendId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{essayId,jdbcType=BIGINT}, 
+      #{commentId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Recommend" >
+    insert into recommend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recommendId != null" >
+        recommend_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="essayId != null" >
+        essay_id,
+      </if>
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recommendId != null" >
+        #{recommendId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayId != null" >
+        #{essayId,jdbcType=BIGINT},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Recommend" >
+    update recommend
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayId != null" >
+        essay_id = #{essayId,jdbcType=BIGINT},
+      </if>
+      <if test="commentId != null" >
+        comment_id = #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where recommend_id = #{recommendId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Recommend" >
+    update recommend
+    set user_id = #{userId,jdbcType=BIGINT},
+      essay_id = #{essayId,jdbcType=BIGINT},
+      comment_id = #{commentId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where recommend_id = #{recommendId,jdbcType=BIGINT}
+  </update>
+</mapper>

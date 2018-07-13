@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.TopicMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Topic" >
+    <id column="topic_id" property="topicId" jdbcType="BIGINT" />
+    <result column="topic_name" property="topicName" jdbcType="VARCHAR" />
+    <result column="topic_pic" property="topicPic" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="is_show" property="isShow" jdbcType="INTEGER" />
+    <result column="partake_num" property="partakeNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    topic_id, topic_name, topic_pic, create_time, lastUpdateTime, is_show, partake_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from topic
+    where topic_id = #{topicId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from topic
+    where topic_id = #{topicId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Topic" >
+    insert into topic (topic_id, topic_name, topic_pic, 
+      create_time, lastUpdateTime, is_show, 
+      partake_num)
+    values (#{topicId,jdbcType=BIGINT}, #{topicName,jdbcType=VARCHAR}, #{topicPic,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}, #{isShow,jdbcType=INTEGER}, 
+      #{partakeNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Topic" >
+    insert into topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="topicName != null" >
+        topic_name,
+      </if>
+      <if test="topicPic != null" >
+        topic_pic,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="partakeNum != null" >
+        partake_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="topicId != null" >
+        #{topicId,jdbcType=BIGINT},
+      </if>
+      <if test="topicName != null" >
+        #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="topicPic != null" >
+        #{topicPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="partakeNum != null" >
+        #{partakeNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Topic" >
+    update topic
+    <set >
+      <if test="topicName != null" >
+        topic_name = #{topicName,jdbcType=VARCHAR},
+      </if>
+      <if test="topicPic != null" >
+        topic_pic = #{topicPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=INTEGER},
+      </if>
+      <if test="partakeNum != null" >
+        partake_num = #{partakeNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where topic_id = #{topicId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Topic" >
+    update topic
+    set topic_name = #{topicName,jdbcType=VARCHAR},
+      topic_pic = #{topicPic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      is_show = #{isShow,jdbcType=INTEGER},
+      partake_num = #{partakeNum,jdbcType=BIGINT}
+    where topic_id = #{topicId,jdbcType=BIGINT}
+  </update>
+</mapper>

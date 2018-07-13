@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.ApplicationMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Application" >
+    <id column="application_id" property="applicationId" jdbcType="INTEGER" />
+    <result column="application_time" property="applicationTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="auditor_id" property="auditorId" jdbcType="INTEGER" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="alipay_account" property="alipayAccount" jdbcType="VARCHAR" />
+    <result column="alipay_name" property="alipayName" jdbcType="VARCHAR" />
+    <result column="gold_num" property="goldNum" jdbcType="INTEGER" />
+    <result column="apply_state" property="applyState" jdbcType="INTEGER" />
+    <result column="refuse_reason" property="refuseReason" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    application_id, application_time, user_id, auditor_id, audit_time, alipay_account, 
+    alipay_name, gold_num, apply_state, refuse_reason, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from application
+    where application_id = #{applicationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from application
+    where application_id = #{applicationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Application" >
+    insert into application (application_id, application_time, 
+      user_id, auditor_id, audit_time, 
+      alipay_account, alipay_name, gold_num, 
+      apply_state, refuse_reason, create_time, 
+      lastUpdateTime)
+    values (#{applicationId,jdbcType=INTEGER}, #{applicationTime,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=INTEGER}, #{auditorId,jdbcType=INTEGER}, #{auditTime,jdbcType=TIMESTAMP}, 
+      #{alipayAccount,jdbcType=VARCHAR}, #{alipayName,jdbcType=VARCHAR}, #{goldNum,jdbcType=INTEGER}, 
+      #{applyState,jdbcType=INTEGER}, #{refuseReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastupdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Application" >
+    insert into application
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applicationId != null" >
+        application_id,
+      </if>
+      <if test="applicationTime != null" >
+        application_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account,
+      </if>
+      <if test="alipayName != null" >
+        alipay_name,
+      </if>
+      <if test="goldNum != null" >
+        gold_num,
+      </if>
+      <if test="applyState != null" >
+        apply_state,
+      </if>
+      <if test="refuseReason != null" >
+        refuse_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applicationId != null" >
+        #{applicationId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationTime != null" >
+        #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alipayAccount != null" >
+        #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayName != null" >
+        #{alipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="goldNum != null" >
+        #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="applyState != null" >
+        #{applyState,jdbcType=INTEGER},
+      </if>
+      <if test="refuseReason != null" >
+        #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Application" >
+    update application
+    <set >
+      <if test="applicationTime != null" >
+        application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alipayAccount != null" >
+        alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="alipayName != null" >
+        alipay_name = #{alipayName,jdbcType=VARCHAR},
+      </if>
+      <if test="goldNum != null" >
+        gold_num = #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="applyState != null" >
+        apply_state = #{applyState,jdbcType=INTEGER},
+      </if>
+      <if test="refuseReason != null" >
+        refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where application_id = #{applicationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Application" >
+    update application
+    set application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER},
+      auditor_id = #{auditorId,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      alipay_account = #{alipayAccount,jdbcType=VARCHAR},
+      alipay_name = #{alipayName,jdbcType=VARCHAR},
+      gold_num = #{goldNum,jdbcType=INTEGER},
+      apply_state = #{applyState,jdbcType=INTEGER},
+      refuse_reason = #{refuseReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where application_id = #{applicationId,jdbcType=INTEGER}
+  </update>
+</mapper>

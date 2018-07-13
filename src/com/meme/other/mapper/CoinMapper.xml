@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.CoinMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Coin" >
+    <id column="coin_record_id" property="coinRecordId" jdbcType="INTEGER" />
+    <result column="coin_record_time" property="coinRecordTime" jdbcType="TIMESTAMP" />
+    <result column="coin_num" property="coinNum" jdbcType="INTEGER" />
+    <result column="coin_user_id" property="coinUserId" jdbcType="INTEGER" />
+    <result column="coin_reason" property="coinReason" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coin_record_id, coin_record_time, coin_num, coin_user_id, coin_reason, create_time, 
+    lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from coin
+    where coin_record_id = #{coinRecordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from coin
+    where coin_record_id = #{coinRecordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Coin" >
+    insert into coin (coin_record_id, coin_record_time, coin_num, 
+      coin_user_id, coin_reason, create_time, 
+      lastUpdateTime)
+    values (#{coinRecordId,jdbcType=INTEGER}, #{coinRecordTime,jdbcType=TIMESTAMP}, #{coinNum,jdbcType=INTEGER}, 
+      #{coinUserId,jdbcType=INTEGER}, #{coinReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastupdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Coin" >
+    insert into coin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="coinRecordId != null" >
+        coin_record_id,
+      </if>
+      <if test="coinRecordTime != null" >
+        coin_record_time,
+      </if>
+      <if test="coinNum != null" >
+        coin_num,
+      </if>
+      <if test="coinUserId != null" >
+        coin_user_id,
+      </if>
+      <if test="coinReason != null" >
+        coin_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="coinRecordId != null" >
+        #{coinRecordId,jdbcType=INTEGER},
+      </if>
+      <if test="coinRecordTime != null" >
+        #{coinRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coinNum != null" >
+        #{coinNum,jdbcType=INTEGER},
+      </if>
+      <if test="coinUserId != null" >
+        #{coinUserId,jdbcType=INTEGER},
+      </if>
+      <if test="coinReason != null" >
+        #{coinReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Coin" >
+    update coin
+    <set >
+      <if test="coinRecordTime != null" >
+        coin_record_time = #{coinRecordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="coinNum != null" >
+        coin_num = #{coinNum,jdbcType=INTEGER},
+      </if>
+      <if test="coinUserId != null" >
+        coin_user_id = #{coinUserId,jdbcType=INTEGER},
+      </if>
+      <if test="coinReason != null" >
+        coin_reason = #{coinReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where coin_record_id = #{coinRecordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Coin" >
+    update coin
+    set coin_record_time = #{coinRecordTime,jdbcType=TIMESTAMP},
+      coin_num = #{coinNum,jdbcType=INTEGER},
+      coin_user_id = #{coinUserId,jdbcType=INTEGER},
+      coin_reason = #{coinReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where coin_record_id = #{coinRecordId,jdbcType=INTEGER}
+  </update>
+</mapper>

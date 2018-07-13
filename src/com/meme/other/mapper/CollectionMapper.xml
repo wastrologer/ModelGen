@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.CollectionMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Collection" >
+    <id column="collection_id" property="collectionId" jdbcType="INTEGER" />
+    <result column="collection_time" property="collectionTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="essay_id" property="essayId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    collection_id, collection_time, user_id, essay_id, create_time, lastUpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collection
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Collection" >
+    insert into collection (collection_id, collection_time, user_id, 
+      essay_id, create_time, lastUpdateTime
+      )
+    values (#{collectionId,jdbcType=INTEGER}, #{collectionTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
+      #{essayId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Collection" >
+    insert into collection
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="collectionId != null" >
+        collection_id,
+      </if>
+      <if test="collectionTime != null" >
+        collection_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="essayId != null" >
+        essay_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="collectionId != null" >
+        #{collectionId,jdbcType=INTEGER},
+      </if>
+      <if test="collectionTime != null" >
+        #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="essayId != null" >
+        #{essayId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Collection" >
+    update collection
+    <set >
+      <if test="collectionTime != null" >
+        collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="essayId != null" >
+        essay_id = #{essayId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Collection" >
+    update collection
+    set collection_time = #{collectionTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER},
+      essay_id = #{essayId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where collection_id = #{collectionId,jdbcType=INTEGER}
+  </update>
+</mapper>

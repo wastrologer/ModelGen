@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Comment" >
+    <id column="comment_id" property="commentId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="essay_id" property="essayId" jdbcType="BIGINT" />
+    <result column="comment_content" property="commentContent" jdbcType="VARCHAR" />
+    <result column="comment_grade" property="commentGrade" jdbcType="SMALLINT" />
+    <result column="comment_sequence" property="commentSequence" jdbcType="SMALLINT" />
+    <result column="senior_comment_id" property="seniorCommentId" jdbcType="BIGINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="topic_id" property="topicId" jdbcType="SMALLINT" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="recommend_num" property="recommendNum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comment_id, user_id, essay_id, comment_content, comment_grade, comment_sequence, 
+    senior_comment_id, publish_time, topic_id, user_nickname, create_time, lastUpdateTime, 
+    recommend_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from comment
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Comment" >
+    insert into comment (comment_id, user_id, essay_id, 
+      comment_content, comment_grade, comment_sequence, 
+      senior_comment_id, publish_time, topic_id, 
+      user_nickname, create_time, lastUpdateTime, 
+      recommend_num)
+    values (#{commentId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{essayId,jdbcType=BIGINT}, 
+      #{commentContent,jdbcType=VARCHAR}, #{commentGrade,jdbcType=SMALLINT}, #{commentSequence,jdbcType=SMALLINT}, 
+      #{seniorCommentId,jdbcType=BIGINT}, #{publishTime,jdbcType=TIMESTAMP}, #{topicId,jdbcType=SMALLINT}, 
+      #{userNickname,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastupdatetime,jdbcType=TIMESTAMP}, 
+      #{recommendNum,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Comment" >
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        comment_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="essayId != null" >
+        essay_id,
+      </if>
+      <if test="commentContent != null" >
+        comment_content,
+      </if>
+      <if test="commentGrade != null" >
+        comment_grade,
+      </if>
+      <if test="commentSequence != null" >
+        comment_sequence,
+      </if>
+      <if test="seniorCommentId != null" >
+        senior_comment_id,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="userNickname != null" >
+        user_nickname,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+      <if test="recommendNum != null" >
+        recommend_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentId != null" >
+        #{commentId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayId != null" >
+        #{essayId,jdbcType=BIGINT},
+      </if>
+      <if test="commentContent != null" >
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentGrade != null" >
+        #{commentGrade,jdbcType=SMALLINT},
+      </if>
+      <if test="commentSequence != null" >
+        #{commentSequence,jdbcType=SMALLINT},
+      </if>
+      <if test="seniorCommentId != null" >
+        #{seniorCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=SMALLINT},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recommendNum != null" >
+        #{recommendNum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Comment" >
+    update comment
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayId != null" >
+        essay_id = #{essayId,jdbcType=BIGINT},
+      </if>
+      <if test="commentContent != null" >
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentGrade != null" >
+        comment_grade = #{commentGrade,jdbcType=SMALLINT},
+      </if>
+      <if test="commentSequence != null" >
+        comment_sequence = #{commentSequence,jdbcType=SMALLINT},
+      </if>
+      <if test="seniorCommentId != null" >
+        senior_comment_id = #{seniorCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=SMALLINT},
+      </if>
+      <if test="userNickname != null" >
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recommendNum != null" >
+        recommend_num = #{recommendNum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Comment" >
+    update comment
+    set user_id = #{userId,jdbcType=BIGINT},
+      essay_id = #{essayId,jdbcType=BIGINT},
+      comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_grade = #{commentGrade,jdbcType=SMALLINT},
+      comment_sequence = #{commentSequence,jdbcType=SMALLINT},
+      senior_comment_id = #{seniorCommentId,jdbcType=BIGINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      topic_id = #{topicId,jdbcType=SMALLINT},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      recommend_num = #{recommendNum,jdbcType=BIGINT}
+    where comment_id = #{commentId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.meme.other.dao.mapper.EssayMapper" >
+  <resultMap id="BaseResultMap" type="com.meme.other.bo.Essay" >
+    <id column="essay_id" property="essayId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="essay_title" property="essayTitle" jdbcType="VARCHAR" />
+    <result column="essay_pic" property="essayPic" jdbcType="VARCHAR" />
+    <result column="essay_type" property="essayType" jdbcType="TINYINT" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="click_num" property="clickNum" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="SMALLINT" />
+    <result column="recommend_num" property="recommendNum" jdbcType="INTEGER" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+    <result column="region_id" property="regionId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_published" property="isPublished" jdbcType="INTEGER" />
+    <result column="user_nickname" property="userNickname" jdbcType="VARCHAR" />
+    <result column="lastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+    <result column="gold_num" property="goldNum" jdbcType="INTEGER" />
+    <result column="is_award" property="isAward" jdbcType="INTEGER" />
+    <result column="is_hiden" property="isHiden" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.meme.other.bo.Essay" extends="BaseResultMap" >
+    <result column="essay_content" property="essayContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    essay_id, user_id, essay_title, essay_pic, essay_type, publish_time, click_num, topic_id, 
+    recommend_num, comment_num, region_id, create_time, is_published, user_nickname, 
+    lastUpdateTime, gold_num, is_award, is_hiden
+  </sql>
+  <sql id="Blob_Column_List" >
+    essay_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from essay
+    where essay_id = #{essayId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from essay
+    where essay_id = #{essayId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.meme.other.bo.Essay" >
+    insert into essay (essay_id, user_id, essay_title, 
+      essay_pic, essay_type, publish_time, 
+      click_num, topic_id, recommend_num, 
+      comment_num, region_id, create_time, 
+      is_published, user_nickname, lastUpdateTime, 
+      gold_num, is_award, is_hiden, 
+      essay_content)
+    values (#{essayId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{essayTitle,jdbcType=VARCHAR}, 
+      #{essayPic,jdbcType=VARCHAR}, #{essayType,jdbcType=TINYINT}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{clickNum,jdbcType=INTEGER}, #{topicId,jdbcType=SMALLINT}, #{recommendNum,jdbcType=INTEGER}, 
+      #{commentNum,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isPublished,jdbcType=INTEGER}, #{userNickname,jdbcType=VARCHAR}, #{lastupdatetime,jdbcType=TIMESTAMP}, 
+      #{goldNum,jdbcType=INTEGER}, #{isAward,jdbcType=INTEGER}, #{isHiden,jdbcType=INTEGER}, 
+      #{essayContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.meme.other.bo.Essay" >
+    insert into essay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="essayId != null" >
+        essay_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="essayTitle != null" >
+        essay_title,
+      </if>
+      <if test="essayPic != null" >
+        essay_pic,
+      </if>
+      <if test="essayType != null" >
+        essay_type,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="clickNum != null" >
+        click_num,
+      </if>
+      <if test="topicId != null" >
+        topic_id,
+      </if>
+      <if test="recommendNum != null" >
+        recommend_num,
+      </if>
+      <if test="commentNum != null" >
+        comment_num,
+      </if>
+      <if test="regionId != null" >
+        region_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isPublished != null" >
+        is_published,
+      </if>
+      <if test="userNickname != null" >
+        user_nickname,
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime,
+      </if>
+      <if test="goldNum != null" >
+        gold_num,
+      </if>
+      <if test="isAward != null" >
+        is_award,
+      </if>
+      <if test="isHiden != null" >
+        is_hiden,
+      </if>
+      <if test="essayContent != null" >
+        essay_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="essayId != null" >
+        #{essayId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayTitle != null" >
+        #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="essayPic != null" >
+        #{essayPic,jdbcType=VARCHAR},
+      </if>
+      <if test="essayType != null" >
+        #{essayType,jdbcType=TINYINT},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickNum != null" >
+        #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        #{topicId,jdbcType=SMALLINT},
+      </if>
+      <if test="recommendNum != null" >
+        #{recommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null" >
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPublished != null" >
+        #{isPublished,jdbcType=INTEGER},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goldNum != null" >
+        #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="isAward != null" >
+        #{isAward,jdbcType=INTEGER},
+      </if>
+      <if test="isHiden != null" >
+        #{isHiden,jdbcType=INTEGER},
+      </if>
+      <if test="essayContent != null" >
+        #{essayContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.meme.other.bo.Essay" >
+    update essay
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="essayTitle != null" >
+        essay_title = #{essayTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="essayPic != null" >
+        essay_pic = #{essayPic,jdbcType=VARCHAR},
+      </if>
+      <if test="essayType != null" >
+        essay_type = #{essayType,jdbcType=TINYINT},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clickNum != null" >
+        click_num = #{clickNum,jdbcType=INTEGER},
+      </if>
+      <if test="topicId != null" >
+        topic_id = #{topicId,jdbcType=SMALLINT},
+      </if>
+      <if test="recommendNum != null" >
+        recommend_num = #{recommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null" >
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isPublished != null" >
+        is_published = #{isPublished,jdbcType=INTEGER},
+      </if>
+      <if test="userNickname != null" >
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdatetime != null" >
+        lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goldNum != null" >
+        gold_num = #{goldNum,jdbcType=INTEGER},
+      </if>
+      <if test="isAward != null" >
+        is_award = #{isAward,jdbcType=INTEGER},
+      </if>
+      <if test="isHiden != null" >
+        is_hiden = #{isHiden,jdbcType=INTEGER},
+      </if>
+      <if test="essayContent != null" >
+        essay_content = #{essayContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where essay_id = #{essayId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.meme.other.bo.Essay" >
+    update essay
+    set user_id = #{userId,jdbcType=BIGINT},
+      essay_title = #{essayTitle,jdbcType=VARCHAR},
+      essay_pic = #{essayPic,jdbcType=VARCHAR},
+      essay_type = #{essayType,jdbcType=TINYINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=SMALLINT},
+      recommend_num = #{recommendNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      region_id = #{regionId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_published = #{isPublished,jdbcType=INTEGER},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      gold_num = #{goldNum,jdbcType=INTEGER},
+      is_award = #{isAward,jdbcType=INTEGER},
+      is_hiden = #{isHiden,jdbcType=INTEGER},
+      essay_content = #{essayContent,jdbcType=LONGVARCHAR}
+    where essay_id = #{essayId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.meme.other.bo.Essay" >
+    update essay
+    set user_id = #{userId,jdbcType=BIGINT},
+      essay_title = #{essayTitle,jdbcType=VARCHAR},
+      essay_pic = #{essayPic,jdbcType=VARCHAR},
+      essay_type = #{essayType,jdbcType=TINYINT},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      click_num = #{clickNum,jdbcType=INTEGER},
+      topic_id = #{topicId,jdbcType=SMALLINT},
+      recommend_num = #{recommendNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      region_id = #{regionId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_published = #{isPublished,jdbcType=INTEGER},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      lastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      gold_num = #{goldNum,jdbcType=INTEGER},
+      is_award = #{isAward,jdbcType=INTEGER},
+      is_hiden = #{isHiden,jdbcType=INTEGER}
+    where essay_id = #{essayId,jdbcType=BIGINT}
+  </update>
+</mapper>
